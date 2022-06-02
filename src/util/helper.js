@@ -1,11 +1,14 @@
 
-const date = function printDate() {
-   console.log("the current date is :  1st june 2022")
+const date = function () {
+    let currentDate = new Date()
+    console.log(currentDate)  
   
 };
 
-const mounth = function printMonth() {
-    console.log("the current month is :   june ")
+const mounth = function () {
+    let currentdate = new Date()
+    let currentMonth = currentdate.getMonth() + 1
+    console.log('The current month is '+currentMonth)
 }
 const batch = function getBatchInfo() {
     console.log("batch name :RADON, week# : W3D3, Day#, the topic  of today is  the  Nodejs module system")
