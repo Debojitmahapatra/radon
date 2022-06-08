@@ -23,8 +23,18 @@ const authorofTwoStates= async function (req, res) {
     prices=data.price
     res.send({msg: savedData,prices})
 }
+const FindOutAuthorNameWithBookCost= async function (req, res) {
+    let data= await BookModel.find( { price : { $gte: 50, $lte: 100} } ).select({ author_id :1,_id:0})
+    //because data returns the array
+      for (let i = 0; i < data.length; i++) {
+          const element = await AuthorModel.findOne({"author_id":data[i].author_id});
+          res.send({msg: element.author_name})
+      }
+  
+}
 
 module.exports.createBook= createBook
 module.exports.createAuthor=createAuthor
 module.exports.getBooksByChatenBhagat=getBooksByChatenBhagat
 module.exports.authorofTwoStates= authorofTwoStates
+module.exports.FindOutAuthorNameWithBookCost= FindOutAuthorNameWithBookCost
