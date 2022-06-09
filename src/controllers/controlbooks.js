@@ -32,9 +32,32 @@ const FindOutAuthorNameWithBookCost= async function (req, res) {
       }
   
 }
+const booksbyauthorid= async function (req, res) {
+    let bookid=req.params.Author_Id
+    let x= await BookModel.find({author_id:bookid}).select("name")
+    res.send({msg: x})
+}
+const listofauthors= async function (req, res) {
+    let data= await AuthorModel.find({age:{$gt:50}}).select("author_id")
+    let savedData= await BookModel.find({author_id:data[0].author_id})
+    let ratings=savedData[0].ratings
+   
+   
+
+        if (ratings<4) { 
+            let author=  await AuthorModel.find()
+            let authorname= author[0].author_name
+            let authorage=author[0].age
+            return  res.send({msg: authorname,authorage})
+}
+    
+    res.send({msg:"No data abelable"})
+}
 
 module.exports.createBook= createBook
 module.exports.createAuthor=createAuthor
 module.exports.getBooksByChatenBhagat=getBooksByChatenBhagat
 module.exports.authorofTwoStates= authorofTwoStates
 module.exports.FindOutAuthorNameWithBookCost= FindOutAuthorNameWithBookCost
+module.exports.booksbyauthorid= booksbyauthorid
+module.exports.listofauthors= listofauthors
