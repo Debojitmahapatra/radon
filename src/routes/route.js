@@ -18,7 +18,7 @@ router.post("/createBook", BookController.createBook  )
 
 
 // router.post("/createUser", UserController.createUser  )
-// router.get("/getUsersData", UserController.getUsersData)
+ //router.get("/getUsersData", UserController.getUsersData)
 
 
 // const mid1= function ( req, res, next) {
