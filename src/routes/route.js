@@ -52,9 +52,7 @@ router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.
 
 
 
-// router.get("/basicRoute2", commonMW.mid1, UserController.basicCode2)
-// router.get("/basicRoute3", commonMW.mid2, UserController.basicCode3)
-// router.get("/basicRoute4", commonMW.mid1, commonMW.mid4, UserController.basicCode4)
+ router.get("/basicRoute2", commonMW.mid1, UserController.basicCode2)
 
 
 

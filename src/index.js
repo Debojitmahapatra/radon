@@ -16,22 +16,23 @@ mongoose.connect("mongodb+srv://debojitmahapatra:pdVCwu3ZCvlS3zZE@atlascluster.k
 .then( () => console.log("MongoDb is connected"))
 .catch ( err => console.log(err) )
 
-// app.use (
-//     function (req, res, next) {
-//         console.log ("inside GLOBAL MW");
-//         next();
-//   }
-//   );
 
  
 
   app.use (
     function (req, res, next) {
-        let ipaddreSS=req.socket.remoteAddress
-        let apiName=req.headers.host
+        let ipaddreSS=req.ip
+        let url=req.originalUrl
+        let currentdate=new Date();
+        let datetime= currentdate.getDate() +" "
+                                  +(currentdate.getMonth()+1)+" "
+                                  +currentdate.getFullYear()+" "
+                                  +currentdate.getHours()+" "
+                                  +currentdate.getMinutes()+" "
+                                  +currentdate.getSeconds()
        
         
-        console.log(timestamp()+","+ipaddreSS+","+apiName); 
+        console.log(`${datetime} ${ipaddreSS} ${url}`); 
         next();
   }
   );
