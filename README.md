@@ -37,3 +37,4 @@ If present, check that the token is valid.
 
 
 
+authentication is the process of verifying who someone is, whereas authorization is the process of verifying what specific applications, files, and data a user has access to
