@@ -48,7 +48,7 @@ const validator1 = async function (req, res, next) {
 
 const validator2 = async function (req, res, next) {
     try {
-        let name = req.body.name;//rec.body{name,email,mobile}
+        let name = req.body.name;
         if (!x(name)) return res.status(400).send({ status: false, message: "Please enter name" });
 
         let email = req.body.email;
