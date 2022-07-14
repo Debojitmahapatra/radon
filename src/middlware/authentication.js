@@ -59,7 +59,7 @@ let authoriseBook = async function (req, res, next) {
     let userId = req.body.userId
     userId = userId.trim()
 
-    if (!mongoose.isValidObjectId(userId)) { return res.status(400).send({ status: false, msg: "invalid author id" }) }
+    if (!mongoose.isValidObjectId(userId)) { return res.status(400).send({ status: false, msg: "invalid user id" }) }
     let data = await userModel.findById({ _id: userId })
 
     if (!data) { return res.status(404).send({ status: false, msg: "userId doesnot exists" }) }

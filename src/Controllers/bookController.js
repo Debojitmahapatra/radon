@@ -80,7 +80,7 @@ const getBookById = async function (req, res) {
 
         let finalResult = {
             title: checkbook.title, excerpt: checkbook.excerpt, userId: checkbook.userId, category: checkbook.category, subcategory: checkbook.subcategory,
-            isDeleted: checkbook.isDeleted, reviews:countReview , releasedAt: checkbook.releasedAt, createdAt: checkbook.createdAt, updatedAt: checkbook.updatedAt, reviewData: reviewData
+            isDeleted: checkbook.isDeleted, reviews:countReview , releasedAt: checkbook.releasedAt, createdAt: checkbook.createdAt, updatedAt: checkbook.updatedAt, reviewsData: reviewData
         }
 
         return res.status(200).send({ status: true, message: 'Books ', data: finalResult });
@@ -117,7 +117,7 @@ const updateBook = async (req, res) => {
             return res.status(404).send({ status: false, msg: `User with Id- ${Id} is not present in collection` })
         }
         if (book.isDeleted == true) {
-            return res.status(400).send({ status: false, msg: 'Document already deleted' })
+            return res.status(404).send({ status: false, msg: 'Document already deleted' })
         }
 
         const titleExist = await bookModel.findOne({ title: title })
@@ -161,7 +161,7 @@ const deleteBook = async function (req, res) {
             let DeleteBlog = await bookModel.findOneAndUpdate({ _id: bookId }, { $set: { isDeleted: true, deletedAt: Date.now() } }, { new: true })
             res.status(200).send({ status: true, message: "successfully deleted", data: DeleteBlog })
         }
-        else return res.status(400).send({ status: false, msg: "already deleted" })
+        else return res.status(404).send({ status: false, msg: "already deleted" })
     }
     catch (err) {
         res.status(500).send({ error: err.message })

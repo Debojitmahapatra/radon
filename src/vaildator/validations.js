@@ -37,7 +37,7 @@ const validUserModel = async function (req, res, next) {
         let data = req.body
 
         let check = data.title
-        check = check.trim()
+       
         if (!check) { return res.status(400).send({ status: false, msg: "Please enter your Title" }) }
 
         let check2 = ["Mr", "Mrs", "Miss"]
@@ -45,7 +45,7 @@ const validUserModel = async function (req, res, next) {
         if (!checkEnum) { return res.status(400).send({ status: false, msg: "Enter your Title from this Only [Mr, Mrs,Miss]" }) }
 
         let name = data.name;
-        name = name.trim()
+        
         if (!x(name)) return res.status(400).send({ status: false, message: "Please enter Name" })
         if (!matchName.test(name)) return res.status(400).send({ status: false, message: "Please Enter Valid name" })
 
@@ -55,7 +55,7 @@ const validUserModel = async function (req, res, next) {
 
 
         let email = data.email;
-        email = email.trim()
+        
         if (!x(email)) return res.status(400).send({ status: false, message: "Please enter email" })
         if (!email1.test(email)) return res.status(400).send({ status: false, message: "Please Enter Valid email" })
 
@@ -97,19 +97,19 @@ let validBookModel = async function (req, res, next) {
         let data = req.body
 
         let title = data.title
-        title = title.trim()
+       
         if (!x(title)) { return res.status(400).send({ status: false, msg: "Please enter your Title" }) }
 
         let excerpt = data.excerpt;
         if (!x(excerpt)) return res.status(400).send({ status: false, message: "Please enter excerpt" })
 
         let userId = data.userId
-        userId = userId.trim()
+        
         if (!userId) return res.status(400).send({ status: false, message: "Please enter userId" })
         if (!mongoose.isValidObjectId(userId)) { return res.status(400).send({ status: false, msg: "invalid user id,Please Enter Valid userId" }) }
 
         let ISBN = data.ISBN
-        ISBN = ISBN.trim()
+        
         if (!ISBN) return res.status(400).send({ status: false, message: "Please enter ISBN no" })
         if (!isbn.test(ISBN)) return res.status(400).send({ status: false, message: "Please Enter Valid ISBN Number" })
 
@@ -121,7 +121,7 @@ let validBookModel = async function (req, res, next) {
         if (!x(subcategory)) return res.status(400).send({ status: false, message: "Please enter subcategory" })
 
         let releasedAt = data.releasedAt
-        releasedAt = releasedAt.trim()
+     
         if (!releasedAt) return res.status(400).send({ status: false, message: "Please enter released date" })
         if (!yearFormet.test(releasedAt)) return res.status(400).send({ status: false, message: "Please Enter year formet of yyyy-mm-dd" })
 
