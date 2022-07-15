@@ -125,6 +125,8 @@ let validBookModel = async function (req, res, next) {
         if (!releasedAt) return res.status(400).send({ status: false, message: "Please enter released date" })
         if (!yearFormet.test(releasedAt)) return res.status(400).send({ status: false, message: "Please Enter year formet of yyyy-mm-dd" })
 
+        let bookCover=data.bookCover
+        if(!bookCover) return res.status(400).send({ status: false, message: "Please enter bookCover" })
 
         let usedTitle = await bookModel.findOne({ title: title })
         if (usedTitle) return res.status(400).send({ status: false, message: "This title has already been used" })
