@@ -22,19 +22,16 @@ redisClient.on("connect", async function () {
 
 
 
-//1. connect to the server
-//2. use the commands :
 
-//Connection setup for redis
 
 const SET_ASYNC = promisify(redisClient.SET).bind(redisClient);
 const GET_ASYNC = promisify(redisClient.GET).bind(redisClient);
 
 const urlCreate = async function (req, res) {
-  const { longUrl } = req.body;
+  let { longUrl } = req.body;
   if (Object.keys(req.body).length == 0) { return res.status(400).send({ status: false, msg: "Bad request- Please enter details in the request Body " }) }
   if (!x(longUrl)) { return res.status(400).send({ status: false, msg: "Please enter your longUrl" }) }
-
+  longUrl=longUrl.trim()
   const baseUrl = "http://localhost:3000"
 
   // Check base url
@@ -86,32 +83,7 @@ function x(data) {
   if (!data || data == null || data === undefined || data.trim() == 0) return false;
   return true
 }
-// const getUrl = async function (req, res) {
-//   try {
-//     let urlCode = req.params.urlCode;
-//     if (!x(urlCode)) return res.status(400).send({ status: false, message: "enter valid urlcode" })
-//     if (!(urlCode.length >= 7 && urlCode.length <= 14)) return res.status(400).send({ status: false, message: "Enter a valid urlcode" })
-//     let cahcedProfileData = await GET_ASYNC(`${urlCode}`)
-//     //let data = JSON.parse(cahcedProfileData);
 
-//     //if data present in cache
-//     if (cahcedProfileData) {
-//         res.status(302).redirect(`${cahcedProfileData.longUrl}`)
-//     }
-// else {
-//     let findUrl = await UrlModel.findOne({ urlCode: url });
-//     await SET_ASYNC(`${urlCode}`, JSON.stringify(findUrl))
-
-//     if (findUrl) {
-//       return res.status(302).redirect(findUrl.longUrl)//.send({status:true,message:`this url redirect to=> ${findUrl.longUrl}`})
-//     } else {
-//       return res.status(404).send({ status: false, message: 'No url found' })
-//     }}
-
-//   } catch (err) {
-//     return res.status(500).send('Server error');
-//   }
-// }
 
 const getUrl = async function (req, res) {
   try {
