@@ -31,7 +31,7 @@ const urlCreate = async function (req, res) {
   let { longUrl } = req.body;
   if (Object.keys(req.body).length == 0) { return res.status(400).send({ status: false, msg: "Bad request- Please enter details in the request Body " }) }
   if (!x(longUrl)) { return res.status(400).send({ status: false, msg: "Please enter your longUrl" }) }
-  longUrl=longUrl.trim()
+  longUrl = longUrl.trim()
   const baseUrl = "http://localhost:3000"
 
   // Check base url
@@ -67,7 +67,7 @@ const urlCreate = async function (req, res) {
           let newUrl = await UrlModel.create(deRurl);
           let finelResult = await UrlModel.findById(newUrl._id).select({ longUrl: 1, shortUrl: 1, urlCode: 1, _id: 0 })
           await SET_ASYNC(`${longUrl}`, JSON.stringify(finelResult))
-          res.status(200).send({ status: true, data: finelResult });
+          res.status(201).send({ status: true, data: finelResult });
         }
       }
     } catch (err) {
