@@ -4,11 +4,11 @@ const route = require("./route/route.js");
 const mongoose  = require("mongoose");
 const app = express();
 let bodyParser = require('body-parser');
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}))
 
 app.use(multer().any());
+
 mongoose
   .connect(
     "mongodb+srv://neesh:E8DNG8XaM4rrzJCV@cluster0.vlwog.mongodb.net/group54Database",

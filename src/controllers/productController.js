@@ -28,19 +28,24 @@ if (price == 0){
             return res.status(400).send({ status: false, message: "Price of product can't be zero" })}
 if (!price.match(/^\d{0,8}(\.\d{1,2})?$/)){
       return res.status(400).send({ status: false, message: "Price  you have set is not valid" })}
-
+if(currencyId){
 if(!validation.isValid(currencyId))  {
   return res.status(400).send({status:false, message: "needs currencyId"})
 }
 if(currencyId != "INR"){
   return res.status(400).send({status:false, message: "needs currencyId in INR"})
-}
+}}
+if(!currencyId){currencyId = "INR"}
+
+if(currencyFormat){
+
 if(!validation.isValid(currencyFormat))  {
   return res.status(400).send({status:false, message: "need currencyFormat"})
 }
 if(currencyFormat != "₹"){
   return res.status(400).send({status:false, message: "need currencyFormat in ₹"})
-}
+}}
+if(!currencyFormat){currencyFormat="₹"}
 if(!validation.isValid(style))  {
   return res.status(400).send({status:false, message: "style required"})
 }
