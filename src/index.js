@@ -11,7 +11,7 @@ app.use(multer().any());
 
 mongoose
   .connect(
-    "mongodb+srv://neesh:E8DNG8XaM4rrzJCV@cluster0.vlwog.mongodb.net/group54Database",
+    "mongodb+srv://debojit:rJuLc4nyipWKU6tV@cluster1.31noc.mongodb.net/group54Database-DB",
     {
       useNewUrlParser: true}
   )

@@ -103,7 +103,6 @@ const getProducts = async function (req, res) {
           
     const queryData = req.query
           
-    /* if (!validation.isValidRequestBody(req.query)) { return res.status(400).send({ status: false, message: "Please enter details"}) } */
     let filter = { isDeleted: false }
     let { size,name,priceGreaterThan,priceLessThan,priceSort} = queryData
     

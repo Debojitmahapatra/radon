@@ -67,7 +67,7 @@ let finalData = await cartModel.findOneAndUpdate({_id: findThatCart._id},updateC
 //let finalresult=await cartModel.findOne({_id:findThatCart._id}).select({"items._id":0})
 return res.status(201).send({status: true, message:"Success", data: finalData});
       
-                }
+}
 }catch (error) {
         res.status(500).send({ status: false, message: error.message })
       }
@@ -83,7 +83,7 @@ const updateCart = async function (req, res) {
       let {productId, cartId, removeProduct} = Data
     if(!validation.isValidRequestBody(Data)){return res.status(400).send({status: false, message: 'invalid request body'})}
 
-    const findUser = await userModel.findOne({_id:userId, isDeleted:false})
+    const findUser = await userModel.findOne({_id:userId})
     if(!findUser){return res.status(404).send({status: false, message: 'User not found'})};
 
     if(!validation.isValidObjectId(productId)){return res.status(400).send({status: false, message: 'Invalid product ID'})};
@@ -157,11 +157,12 @@ return res.status(200).send({ status: true, message: `Success`, data: data })
 const getCartById = async function(req,res){
     try{
         let userId = req.params.userId
-         const findUser = await userModel.findOne({_id:userId, isDeleted:false})
+         const findUser = await userModel.findOne({_id:userId})
         if(!findUser){return res.status(404).send({status: false, message: 'User not found'})};
      
-    const validCart = await cartModel.findOne({userId: userId, totalPrice: {$gt:0}}).select({"items._id":0})
-    if(!validCart){return res.status(400).send({status: false, message: 'cart not found or deleted'});}
+    const validCart = await cartModel.findOne({userId: userId}).select({"items._id":0})
+
+   // if(!validCart){return res.status(400).send({status: false, message: 'cart not found or deleted'});}
     
     return res.status(200).send({status: true, message: "Success", data: validCart})
     }catch (error) {
@@ -173,7 +174,7 @@ const getCartById = async function(req,res){
 const deleteCart = async function(req,res){
     try{
         let userId = req.params.userId;
-        const findUser = await userModel.findOne({_id:userId, isDeleted:false})
+        const findUser = await userModel.findOne({_id:userId})
         if(!findUser){return res.status(404).send({status: false, message: 'User not found'})};  
     
     const validCart = await cartModel.findOne({userId: userId, totalPrice: {$gt:0}})
