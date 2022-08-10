@@ -29,7 +29,8 @@ const loginUser = async function (req, res) {
       let token = jwt.sign(
         {
           userId: user._id.toString(),
-          
+          iat: new Date().getTime(),
+          exp: new Date().setDate(new Date().getDate() + 1)
         },
         "functionup-radon"
       );

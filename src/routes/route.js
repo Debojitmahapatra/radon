@@ -21,17 +21,5 @@ router.delete("/blogs/:blogId",mid.validBlogId,authentication.authenticate,autho
 
 router.delete("/blogs",authentication.authenticate,authorization.authoriseGetAndDelete, deleteBlogs)
 
-// router.post("/createBlog", mid.checkBody,validation.validateBlogModel,authentication.authenticate,authorization.authorisation,  createBlog)
-
-// router.get("/getBlog",authentication.authenticate,authorization.authorisation, filterBlogs)
-
-// router.put("/blog/:blogId",mid.checkBody,mid.validBlogId,authentication.authenticate,authorization.authorisation, update1)
-
-// router.delete("/blog/:blogId",mid.validBlogId,authentication.authenticate,authorization.authorisation, deleteBlog)
-
-// router.delete("/blogs",authentication.authenticate,authorization.authorisation, deleteBlogs)
-
 module.exports = router;
-// router.route("/products")
-// .post(createProduct)
-// .get(getProduct)
+
