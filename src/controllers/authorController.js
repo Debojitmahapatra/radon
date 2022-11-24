@@ -1,6 +1,8 @@
 const { count } = require("console")
 const AuthorModel = require("../models/authorModel")
 const jwt = require("jsonwebtoken");
+
+//====================================create author
 const createAuthor = async function (req, res) {
     try {
         let data = req.body
@@ -16,6 +18,7 @@ const createAuthor = async function (req, res) {
         res.status(500).send({ msg: "Error", error: err.message })
     }
 }
+//======================================login author
 const loginUser = async function (req, res) {
  try{  let userName = req.body.email;
     let password = req.body.password;
