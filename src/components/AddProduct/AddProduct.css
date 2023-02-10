@@ -1,0 +1,36 @@
+.inputProduct{
+    display: block;
+    margin: 25px;
+    padding: 7px;
+    width: 300px;
+    border: 1px solid skyblue;
+    text-align: center; 
+    margin-left: 37%;
+}
+
+.box{
+    margin-top: 10px;
+}
+.btn{
+    height: 30px;
+    width: 150px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgb(195, 86, 47);
+    border: 1px solid rgb(89, 172, 205);
+    margin-left: 45%;
+    margin-top: 29px;
+}
+.btn:hover{
+    box-shadow: 10px 8px 2px 1px rgba(87, 87, 152, 0.2);
+}
+
+.invalid-input{
+    color: red;
+    margin-top: -20px;
+    display: block;
+    margin-left: 20px;
+}
+.box h1{
+    margin-left: 30%;
+}
